@@ -49,3 +49,27 @@ for c in flags.columns:
               'max: ', att.max(), '\t',
               'media: ', round(att.mean(), 2), '\t',
               'd.p.: ', round(att.std(), 2))
+            
+df_cores = pd.DataFrame()
+for c in flags.columns:
+    if c in [ 'red', 'green', 'blue', 'gold', 'white', 'black', 'orange' ]:
+        df_cores[c] = flags[c].value_counts()
+
+print(df_cores)
+
+lst_cores = [
+    'red',
+    'green',
+    'blue',
+    'gold',
+    'white',
+    'black',
+    'orange',
+]
+
+df_cores.plot(kind='barh', # Para criar um gráfico de barras horizontais
+              subplots=True, # Para permitir que sejam criados vários gráficos
+              figsize=(8, 25), # Define a Altura e Largura do Gráfico
+              color=lst_cores) # Define as cores de cada Gráfico
+
+plt.show()
